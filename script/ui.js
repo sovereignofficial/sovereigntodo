@@ -10,8 +10,6 @@ static changeTheme(darkMode) {
 }
   static adjustFilters(lists, tags, tasks) {
     for (let task of tasks) {
-      console.log(task.getTaskTitle());
-      console.log(task.getTaskInfo().tags);
       lists.forEach(list => {
         if (list.getTitle() === task.getTaskInfo().list && !list.getTasks().includes(task.getTaskTitle())) {
           list.appendItemIntoTasks(task.getTaskTitle());
@@ -29,7 +27,6 @@ static changeTheme(darkMode) {
     const pageMode = page.getListViewMode();
     const tag = pageMode === "tag" && tags.find(item => item.getTitle() === pageTitle);
 
-     console.log("PAGE NAME",pageTitle);
     const newTask = pageMode === "lists"
     ?new Task(input, pageTitle)
     : new Task(input,null,null,null,[tag]);
@@ -45,23 +42,19 @@ static changeTheme(darkMode) {
     const task = tasks.find(item => item.getTaskTitle() === taskTitle);
     task.appendSubtask({ subtask, completed: false });
     const newTaskView = new TaskView(task.getTaskInfo());
-    console.log("new taskview", newTaskView);
     this.renderTaskView(newTaskView.getTaskItems(), filters);
 
   }
   static addTagToTask(tasks, tags, selectedTag, taskView, filters) {
 
-    console.log("is it underscored",taskView.getTaskItems());
     const taskTitle = taskView.getTaskItems().title;
     const task = tasks.find(item => item.getTaskTitle() === taskTitle);
     const foundTag = tags.find(item => item.getTitle() === selectedTag);
     task.appendTag(foundTag);
     const newTaskView = new TaskView(task.getTaskInfo());
-    console.log("new taskview", newTaskView.getTaskItems(), filters);
     this.renderTaskView(newTaskView.getTaskItems(), filters);
   }
   static updateTask(tags, tasks, taskView, { titleInput, descriptionInput, dateInput, selectedList }) {
-    console.log(tasks, taskView);
     const taskInfo = taskView.getTaskItems();
     const newTasks = tasks.filter(task => task.getTaskTitle() !== taskInfo.title);
     const newTask = new Task(
@@ -89,12 +82,10 @@ static changeTheme(darkMode) {
   static checkTask(tasks, task, checked) {
     const foundTask = tasks.find(item => item.getTaskTitle() === task);
     foundTask.checkTask(checked);
-    console.log(tasks);
     Database.saveTasksIntoDb(tasks);
   }
   static checkSubtask(tasks, task, subtask, checked) {
     const foundTask = tasks.find(item => item.getTaskTitle() === task);
-    console.log(foundTask);
     foundTask.checkSubtasks(subtask, checked);
     Database.saveTasksIntoDb(tasks);
   }
@@ -110,7 +101,6 @@ static changeTheme(darkMode) {
   static changePage(items, item, tasks , mode) {
     // create a listview and assign the clicked list and find the tasks belongs to that list 
     const foundObject = items.find(obj => obj.getTitle() === item);
-    console.log(foundObject);
     const page = new ListView(foundObject.getTitle(), foundObject.getTasks(),mode);
     this.renderManagerPage(page, tasks);
     return page;
@@ -159,7 +149,6 @@ static changeTheme(darkMode) {
     }
   }
   static renderDashboardActions(dashboard) {
-    console.log("sadsa", dashboard)
     const { todayTasks, upcomingTasks, dueTasks, pendingTasks, completedTasks } = dashboard.getDashboardInfo();
     const dahsboardContainer = document.getElementById('tasks');
     dahsboardContainer.innerHTML = `
@@ -243,7 +232,6 @@ if (list.length < 1) {
     return page;
   }
   static renderManagerPage(page, taskList) {
-    console.log("Page View", page);
     const title = page.getListName();
     const tasks = page.getTasks();
     const listView = document.getElementById('list-info');
@@ -316,7 +304,6 @@ if (list.length < 1) {
   }
   static renderTaskView(taskInfo, filters) {
     const { title, description, list, date, tags, subtasks } = taskInfo;
-    console.log(subtasks);
     const taskTitle = document.querySelector('.task-title');
     const taskDesc = document.getElementById('task-description');
     const listOptions = document.getElementById('task-lists');

@@ -2,7 +2,6 @@ class Database{
     static saveTasksIntoDb(tasks){
         try{
             const savedTasks = localStorage.setItem('tasks',JSON.stringify(tasks));
-            console.log("saved",savedTasks)
         }catch(e){
             console.error(e);
         }
@@ -22,7 +21,6 @@ class Database{
     static saveListsIntoDb(lists){
         try{
             const savedLists = localStorage.setItem('lists',JSON.stringify(lists));
-            console.log("saved",savedLists)
     
         }catch(e){
             console.error(e);
@@ -42,7 +40,6 @@ class Database{
     static saveTagsIntoDb(tags){
         try{
             const savedTags = localStorage.setItem('tags',JSON.stringify(tags));
-            console.log("saved",savedTags)
     
         }catch(e){
             console.error(e)

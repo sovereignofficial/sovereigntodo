@@ -73,7 +73,6 @@
                     break;
                 case 'append-tag':
                     const selectedTag = document.getElementById('tag-select').value;
-                    console.log("active task view",activeTaskView);
                     UI.addTagToTask(tasks, tags, selectedTag, activeTaskView, { tags, lists });
                 case 'add-tag':
                     const popup = document.querySelector('.popup-container');
@@ -197,7 +196,6 @@
     searchInput.addEventListener('input',(e)=>{
         const query = e.target.value;
         const results = tasks.filter(task => task.getTaskTitle().includes(query));
-        console.log("results",results);
         UI.renderSearchResults(query,results);
     })
 
