@@ -1,66 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sovereign Todo App - A powerful todo application to manage your tasks efficiently.">
-    <meta name="keywords" content="todo app, tasks, productivity, management">
-    <meta name="author" content="Your Name">
-    <title>Sovereign Todo</title>
-    <link rel="stylesheet" type="text/css" href="./style/index.css"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sovereign Todo App - A powerful todo application to manage your tasks efficiently.">
+  <meta name="keywords" content="todo app, tasks, productivity, management">
+  <meta name="author" content="Your Name">
+  <title>Sovereign Todo App</title>
+  <link rel="stylesheet" href="./style/reset.css" />
+  <link rel="stylesheet" href="./style/index.css"/>
+  <link rel="stylesheet" href="./style/menu.css" />
+  <link rel="stylesheet" href="./style/app.css" />
+  <link rel="stylesheet" href="./style/list.css" />
+  <link rel="stylesheet" href="./style/task.css" />
+  <link rel="stylesheet" href="./style/inputs.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
+
 <body>
-    <section id="app-top">
-         <h1>Sovereign Todo App</h1>
-         <div id="user-form-bg">
-            <form id="user-form">
-                 <div id="task">
-                    <label for="input-task">Task</label>
-                    <input type="text" id="input-task" placeholder="Type your task..."/>
-                 </div>
-                 <div id="category">
-                    <label for="input-category">Category</label>
-                    <input type="text" id="input-category" placeholder="Type a category..."/>
-                 </div>
-                <button id="form-btn" type="submit">Add Task</button>
-            </form>
-         </div>
-    </section>
-    <section id="app-body">
-             <div id="tasks-bg">
-               <table id="tasks-table">
-                  <thead>
-                    <tr>
-                      <th>Task</th>
-                      <th>Status</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="checkbox"> Task 1</td>
-                      <td><span class="status">Pending</span></td>
-                      <td><button class="edit-button">Edit</button></td>
-                      <td><button class="delete-button">Delete</button></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox"> Task 2</td>
-                      <td><span class="status">Completed</span></td>
-                      <td><button class="edit-button">Edit</button></td>
-                      <td><button class="delete-button">Delete</button></td>
-                    </tr>
-                    <!-- Add more rows for additional tasks -->
-                  </tbody>
-                </table>
-                
-                   <nav>
-                     <button id="nav-btn">Home</button>
-                     <button id="nav-btn">Pending Tasks</button>
-                     <button id="nav-btn">Completed Tasks</button>
-                  </nav>
-             </div>
-    </section>
+
+  <section id="menu-section" class="col2">
+    <div id="menu-top" class="row2">
+      <h3>Menu</h3>
+      <input type="text" placeholder="Search" id="search" maxlength="20" />
+    </div>
+    <div id="menu-body" class="row8">
+      <ul id="tasks">
+        <div class="menu-part-header">
+          <h4>TASKS</h4>
+        </div>
+        <li><button class="btn-menu" type="button">Upcoming <span>12</span></button></li>
+        <li><button class="btn-menu" type="button">Today <span>4</span>  </button></li>
+        <li><button class="btn-menu" type="button">Due <span>4</span> </button></li>
+        <li><button class="btn-menu" type="button">Completed <span>4</span> </button></li>
+        <li><button class="btn-menu" type="button">Pending <span>4</span> </button></li>
+      </ul>
+      <ul id="lists">
+
+      </ul>
+      <ul id="tags">
+        <div class="menu-part-header">
+          <h4>TAGS</h4>
+        </div>
+        <li><button class="btn-tag" type="button">Tag 1 </button></li>
+        <li><button class="btn-tag" type="button">Tag 2 </button></li>
+        <li><button id="create-tag" class="btn-add-tag" type="button">+ Add Tag </button></li>
+      </ul>
+    </div>
+    <div id="menu-footer" class="row2">
+      <div class="theme-toggle">
+        <input type="checkbox" id="theme-toggle-checkbox">
+        <label for="theme-toggle-checkbox"></label>
+      </div>
+    </div>
+  </section>
+  <section id="app-section" class="col10">
+    <div id="list-view" class="col5">
+      <div id="list-info">
+      </div>
+    </div>
+    <div id="task-view" class="col4">
+      <div id="task-info">
+        <div id="task-top">
+          <h2>Task</h2>
+        </div>
+        <div id="task-body">
+          <form id="task-form">
+            <input type="text" maxlength="60" class="task-title" />
+            <textarea id="task-description" maxlength="200" ></textarea>
+            <div>
+              <h4 class="col1">List</h4>
+              <select class="col5" id="task-lists">
+                <option value="personal">Personal</option>
+              </select>
+
+            </div>
+            <div>
+              <h4 class="col1">Due date</h4>
+              <input class="col5" type="datetime-local" id="task-date" name="task-date">
+            </div>
+            <div>
+              <h4 class="col1"> Tags</h4>
+              <button id="add-tag" type="button" class="view-add-btn">Add Tag</button>
+
+              <div class="col5" id="tag-container">
+
+              </div>
+            </div>
+
+          </form>
+
+          <div id="task-sublist">
+            <div id="sublist-header">
+              <h2>Subtasks</h2>
+            </div>
+            <div id="sublist-body">
+              <div id="task-inputs">
+                <button id="add-subtask" type="button">+</button>
+                <input type="text" maxlength="60" id="subtask-input" placeholder="Add New Subtask" />
+              </div>
+              <ul id="subtask-container">
+                <li class="li-subtask">
+                    <input class="check-subtask" type="checkbox" />
+                    <span id="subtask">Subtask</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="task-footer">
+          <button type="button" id="delete-task">Delete Task</button>
+          <button type="button" id="save-task">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Modal -->
+  <div id="modal-bg">
+    <div class="modal">
+      <button class="close-button">&times;</button>
+      <h2 id="modal-title">Modal Title</h2>
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+  <!-- Popup container -->
+<div class="popup-container">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h2>Select a Tag</h2>
+      <button id="close-btn">Close</button>
+    </div>
+    <div class="popup-body">
+      <select id="tag-select">
+      </select>
+    </div>
+    <div class="popup-footer">
+       <button id="append-tag">Append</button>
+    </div>
+  </div>
+</div>
+  
+  <script src="./script/components/listview.js"></script>
+  <script src="./script/components/taskview.js"></script>
+  <script src="./script/components/modal.js" type="module"></script>
+  <script src="./script/lib/dashboardActions.js" type="module"></script>
+  <script src="./script/lib/generateColor.js" type="module"></script>
+  <script src="./script/menu/dashboard.js" type="module"></script>
+  <script src="./script/menu/lists.js"></script>
+  <script src="./script/menu/tags.js"></script>
+  <script src="./script/db.js"></script>
+  <script src="./script/task.js"></script>
+  <script src="./script/ui.js"></script>
+  <script src="./script/index.js" type="module"></script>
 </body>
+
 </html>
