@@ -12,13 +12,13 @@ The Taskify is a web-based application that allows users to manage their tasks a
 - Search: Users can search for tasks by entering keywords, allowing for quick and efficient task retrieval.
 
 ## Installation
-To use the Task Manager App, follow these steps:
+To use the Taskify, follow these steps:
 1. Clone the repository: `git clone https://github.com/sovereignofficial/taskify.git`
 2. Open the app in your preferred code editor.
 3. Run the app on a local development server or deploy it to a web server.
 
 ## Usage
-1. Open the Task Manager App in your web browser.
+1. Open the Taskify in your web browser.
 2. Use the provided UI to navigate and interact with the app.
 3. Create new tasks by clicking the "+" button and entering task details.
 4. Add tags and lists to organize your tasks.
